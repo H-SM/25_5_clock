@@ -1,7 +1,7 @@
 function App(){
-    const [ displayTime , setdisplayTime ]= React.useState(5);
-    const [ breakTime , setBreakTime ]= React.useState(3);
-    const [ sessionTime , setSessionTime ]= React.useState(5);
+    const [ displayTime , setdisplayTime ]= React.useState(25*60);
+    const [ breakTime , setBreakTime ]= React.useState(5*60);
+    const [ sessionTime , setSessionTime ]= React.useState(25*60);
     const [ timerOn , setTimerOn ]= React.useState(false);
     const [ onBreak , setOnBreak ]= React.useState(false);
     const [ breakAudio , setBreakAudio ]= React.useState(new Audio("./aud.mp3"));
@@ -42,7 +42,7 @@ function App(){
             let interval = setInterval(() =>{
                 date = new Date().getTime();
                 if(date > nextDate){
-                    setdisplayTime((prev) => {
+                    setdisplayTime(prev => {
                         if(prev <=0 && !onBreakVariable){
                             playBreakSound();
                             onBreakVariable=true;
@@ -60,10 +60,10 @@ function App(){
                 }
             },30);
             localStorage.clear();
-            localStorage.setItem("interval-id", interval);
+            localStorage.setItem('interval-id', interval);
         }
         if(timerOn){
-            clearInterval(localStorage.getItem("interval-id"));
+            clearInterval(localStorage.getItem('interval-id'));
         }
         setTimerOn(!timerOn);
     }
